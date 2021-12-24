@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <p><a href='/logout'>Logout</a></p>
+        <p><a href="/dashboard">Dashboard</a></p>
+    </div>
+    <div>
+        <h2>Edit {{this_car.model}}</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        <!-- declare a variable called messages -->
+        {% if messages %}
+        <!-- check if there are any messages -->
+        {% for category, message in messages %}
+        {% if category == 'car'%}
+        <!-- loop through the messages -->
+        <p>{{message}}</p> <!-- display each message in a paragraph tag -->
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <form action="/update/{{this_car.id}}" method="post">
+            <label for='price'>Price: </label>
+            <input type="number" value= '{{this_car.price}}' name ='price'>
+            <label for='model'>Model: </label>
+            <input type="text" value= '{{this_car.model}}' name ='model'>
+            <label for='make'>Make: </label>
+            <input type="text"" value= '{{this_car.make}}' name ='make'>
+            <label for='year'>Year: </label>
+            <input type="number" value= '{{this_car.year}}' name ='year'>
+            <label for='description'>Description: </label>
+            <input type="text"" value= '{{this_car.description}}' name ='description'>
+            <input type="submit" value='Edit'>
+        </form>
+    </div>
+</body>
+</html>

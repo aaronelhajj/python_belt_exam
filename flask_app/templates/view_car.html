@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <p><a href='/logout'>Logout</a></p>
+        <p><a href="/dashboard">Dashboard</a></p>
+    </div>
+    <div>
+        <p>$ {{this_car.price}}</p>
+        <p>Model: {{this_car.model}}</p>
+        <p>Make: {{this_car.make}}</p>
+        <p>Year: {{this_car.year}}</p>
+        <p>Description: {{this_car.description}}</p>
+        <p>Seller: {{this_car.seller.first_name}} {{this_car.seller.last_name}}</p>
+        <p><a href="/purchase/{{this_car.id}}/{{this_car.seller.id}}">Purchase</a></p>
+    </div>
+</body>
+</html>

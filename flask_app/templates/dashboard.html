@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h1>Welcome to Car Dealz, {{user_info.first_name}}!!!!</h1>
+        <p><a href='/logout'>Logout</a></p>
+        
+        <p><a href="/user/{{user_info.id}}">Purchases</a></p>
+    </div>
+    <div>
+        <h2>Cars for Sale</h2>
+        <table>
+            <tr>
+                <th>Model</th>
+                <th>Year</th>
+                <th>Seller</th>
+                <th>Actions</th>
+            </tr>
+            {% for car in all_cars: %}
+                <tr>
+                        <td>{{car.model}}</td>
+                        <td>{{car.year}}</td>
+                        <td>{{car.seller.first_name}} {{car.seller.last_name}}</td>
+                        {% if car.seller.id == user_info.id: %}
+                            <td><a href="/edit/{{car.id}}">Edit</a> <a href="/destroy/{{car.id}}">Delete</a></td>
+                        {% else %}
+                            {% if car.purchased is false: %}
+                                <td><a href='/show/{{car.id}}'>View</a></td>
+                            {% else %}
+                                <td>SOLD</td>
+                            {% endif %}
+                        {% endif %}
+                </tr>
+            {% endfor %}
+        </table>
+        <p><a href="/new">Add A Car</a></p>
+    </div>
+    
+</body>
+</html>
